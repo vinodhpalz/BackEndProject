@@ -26,11 +26,31 @@ public class ProductDAO {
 			sess.getTransaction().rollback();
 			ex.printStackTrace();
 		}
-	}	
-	public List<Product> getProduct()throws Exception
-	{
-		sess = db.getSess();
-		sess.beginTransaction();
-		return sess.createQuery("FROM Product", Product.class).getResultList();
 	}
+	
+	public List<Product> getProducts()
+	{
+		List<Product> lp = null;
+		try
+		{
+			sess = db.getSess();
+			sess.beginTransaction();
+			lp = sess.createQuery("FROM Product", Product.class).getResultList();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return lp;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
