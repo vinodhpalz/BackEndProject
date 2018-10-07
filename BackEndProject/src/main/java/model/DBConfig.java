@@ -12,11 +12,7 @@ public class DBConfig {
 	public DBConfig()
 	{
 		cfg = new Configuration();
-		cfg.addAnnotatedClass(Product.class);
-		cfg.addAnnotatedClass(Supplier.class);
-		sf = cfg.configure("Hibernate.cfg.xml").buildSessionFactory();
-		
-		
+		sf = cfg.configure("Hibernate.cfg.xml").addAnnotatedClass(Product.class).buildSessionFactory();
 	}
 	public Session getSess()
 	{
