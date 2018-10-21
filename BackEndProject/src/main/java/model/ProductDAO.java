@@ -12,8 +12,9 @@ public class ProductDAO {
 		db = new DBConfig();
 	}
 	
-	public void insertProduct(Product p)
+	public boolean insertProduct(Product p)
 	{
+		boolean b = true;
 		try
 		{
 			sess = db.getSess();
@@ -23,9 +24,11 @@ public class ProductDAO {
 			
 		}catch(Exception ex)
 		{
+			b = false;
 			sess.getTransaction().rollback();
 			ex.printStackTrace();
 		}
+		return b;
 	}
 	
 	public List<Product> getProducts()
